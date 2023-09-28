@@ -1,30 +1,52 @@
-import styled from "styled-components";
-const Nav = styled.nav`
-  display: flex;
-  align-items: center;
-  padding: ${({ theme }) => theme.paddings.medium};
-  background-color: ${({ theme }) => theme.colors.base};
-  color: ${({ theme }) => theme.colors.accent};
-`;
-const Anchor = styled.a`
-  color: ${({ theme }) => theme.colors.accent};
-  text-decoration: none;
-  font-family: ${({ theme }) => theme.fonts.navlink};
-  font-size: ${({ theme }) => theme.fontSizes.large};
-  font-weight: ${({ theme }) => theme.fontWeights.regular};
-  line-height: ${({ theme }) => theme.lineHeights.medium};
-  padding: ${({ theme }) => theme.paddings.medium};
-  &:hover {
-    color: ${({ theme }) => theme.colors.primary};
-  }
-`;
-export default function Navbar() {
+import { useState } from "react";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
+
+function NavigationBar(props) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
   return (
     <div>
-      <Nav>
-        <Anchor href="/">Home</Anchor>
-        <Anchor href="/about">About</Anchor>
-      </Nav>
+      <Navbar {...props}>
+        <NavbarBrand href="/">FSD</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="me-auto" navbar>
+            <NavItem>
+              <NavLink href="/">Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://github.com/gavinisumanth/fsd">
+                GitHub
+              </NavLink>
+            </NavItem>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Options
+              </DropdownToggle>
+              <DropdownMenu end>
+                <DropdownItem>Option 1</DropdownItem>
+                <DropdownItem>Option 2</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
+        </Collapse>
+      </Navbar>
     </div>
   );
 }
+
+export default NavigationBar;
