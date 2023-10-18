@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -7,10 +8,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+  Button,
 } from "reactstrap";
 
 function NavigationBar(props) {
@@ -20,7 +18,7 @@ function NavigationBar(props) {
 
   return (
     <div>
-      <Navbar style={{minHeight:"1.5em",fontSize:"1.5em"}} {...props}>
+      <Navbar style={{ minHeight: "1.5em", fontSize: "1.5em" }} {...props}>
         <NavbarBrand href="/">FSD</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -33,16 +31,26 @@ function NavigationBar(props) {
                 GitHub
               </NavLink>
             </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu end>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
           </Nav>
+          <Link to="/auth?page=signin" className="text-decoration-none">
+            <Button
+              color="dark"
+              size="lg"
+              className={isOpen ? "fs-4 w-100" : "fs-4"}
+              outline
+            >
+              Sign In
+            </Button>
+          </Link>
+          <Link to="/auth?page=signup" className="text-decoration-none">
+            <Button
+              color="primary"
+              size="lg"
+              className={isOpen ? "fs-4 w-100 my-2" : "fs-4 mx-4"}
+            >
+              Sign Up
+            </Button>
+          </Link>
         </Collapse>
       </Navbar>
     </div>
