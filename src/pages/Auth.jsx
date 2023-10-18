@@ -5,7 +5,7 @@ import NavigationBar from "./../components/Navbar";
 function Auth() {
   return (
     <>
-      <NavigationBar color="primary" light expand="md" />
+      <NavigationBar color="light" light expand="md" />
       <Signup />
       <Signin />
     </>
