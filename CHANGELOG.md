@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.0](https://github.com/GaviniSumanth/FSD/compare/v1.2.0...v1.3.0) (2023-10-21)
+
+
+### Features
+
+* add comment section UI component ([309bc0a](https://github.com/GaviniSumanth/FSD/commit/309bc0a6e1b6474daf4d6ac5a8578f28bd1f20f9))
+* add signin, signup to navbar ([911ffbf](https://github.com/GaviniSumanth/FSD/commit/911ffbf67fdc7ba7df2e7e0830f4b320683442be))
+
+
+### Bug Fixes
+
+* navbar color changed to light ([682f3b1](https://github.com/GaviniSumanth/FSD/commit/682f3b184eb1261419c4d5049367b434acc80d94))
+* random sorting of comments ([7343c12](https://github.com/GaviniSumanth/FSD/commit/7343c12ccafe522489ea34628dd539f5ab0f01c4))
+
 ## [1.2.0](https://github.com/GaviniSumanth/FSD/compare/v1.1.0...v1.2.0) (2023-10-18)
 
 
