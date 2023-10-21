@@ -184,7 +184,6 @@ Comment.defaultProps = {
 function Comments({ comments }) {
   // TODO: get comments from api and implement add comments functionality
   let [sortOrder, setSortOrder] = useState("newest");
-  console.log(sortOrder);
   return (
     <>
       <AddComment />
@@ -208,7 +207,7 @@ function Comments({ comments }) {
         </div>
       </div>
       <hr className="mx-0 my-0 px-0 py-0" />
-      {comments
+      {Array.from(comments)
         ?.sort((a, b) => {
           if (sortOrder === "upvotes") return b.upVotes - a.upVotes;
           else if (sortOrder === "downvotes") return b.downVotes - a.downVotes;
