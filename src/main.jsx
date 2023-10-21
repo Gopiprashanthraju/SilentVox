@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Player from "./pages/Player.jsx";
 import Home from "./pages/Home.jsx";
 import Auth from "./pages/Auth.jsx";
+import ErrorPage from "./pages/Error.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,12 +18,16 @@ const router = createBrowserRouter([
     path: "/auth",
     element: <Auth />,
   },
+  {
+    path: "*",
+    element: <ErrorPage />,
+  },
 ]);
 import "./main.css";
 // theme switcher
 if (
-  window.matchMedia &&
-  window.matchMedia("(prefers-color-scheme: dark)").matches
+  window?.matchMedia &&
+  window?.matchMedia("(prefers-color-scheme: dark)").matches
 )
   import("./dark.scss");
 else import("./light.scss");
