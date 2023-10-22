@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.0](https://github.com/GaviniSumanth/FSD/compare/v1.3.0...v1.4.0) (2023-10-22)
+
+
+### Features
+
+* add 404 page ([dd588e4](https://github.com/GaviniSumanth/FSD/commit/dd588e4243d0224b5f109abf27c64616f2a2fa4a))
+* add video card component ([9ba5a55](https://github.com/GaviniSumanth/FSD/commit/9ba5a554c53f07d796347a439bfe8de5ccc98f02))
+
 ## [1.3.0](https://github.com/GaviniSumanth/FSD/compare/v1.2.0...v1.3.0) (2023-10-21)
 
 
