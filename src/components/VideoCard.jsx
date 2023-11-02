@@ -132,3 +132,40 @@ VideoCard.defaultProps = {
   creator: "DarkLordStrategy",
   uri: "video-uri",
 };
+
+export function VideoCardMini({ title, thumbnail, creator, uri }) {
+  const navigate = useNavigate();
+  return (
+    <div
+      className="my-2 border border-2 border-dark rounded-4 container-fluid p-3"
+      style={{ maxWidth: "350px" }}
+      onClick={() => {
+        navigate("/v/" + uri);
+      }}
+    >
+      <Row className="d-flex flex-column justify-content-between">
+        <Col className="d-flex justify-content-center">
+          <Thumbnail alt={title} src={thumbnail} />
+        </Col>
+        <Col className="d-flex flex-column justify-content-between">
+          <div className="p-3">
+            <User username={creator} mini />
+            <ClampedText text={title} lines={2} fontSize={4} />
+          </div>
+        </Col>
+      </Row>
+    </div>
+  );
+}
+VideoCardMini.propTypes = {
+  title: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+  creator: PropTypes.string.isRequired,
+  uri: PropTypes.string.isRequired,
+};
+VideoCardMini.defaultProps = {
+  title: "Dark Visions: The Elusive Video and the Galaxy's Shrouded Secrets",
+  thumbnail: "https://specializeddental.com/assets/placeholder-image.png",
+  creator: "DarkLordStrategy",
+  uri: "video-uri",
+};
