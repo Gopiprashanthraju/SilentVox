@@ -2,31 +2,97 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Col, Row } from "reactstrap";
 
-function User({ username }) {
+function User({ username, mini }) {
   return (
     <div className="d-flex flex-row justify-content-start align-items-center py-1">
-      <img
-        src={encodeURI(
-          "https://ui-avatars.com/api/?background=random&&name=" +
-            username.split(/(?=[A-Z])/).join("+")
-        )}
-        className="rounded border border-2 border-dark"
-        width="25"
-        height="25"
-        alt={username + "'s avatar"}
-      />
-      <h4 className="fs-5 mx-2">@{username}</h4>
+      {mini ? (
+        <h4 className="fs-5">@{username}</h4>
+      ) : (
+        <>
+          <img
+            src={encodeURI(
+              "https://ui-avatars.com/api/?background=random&&name=" +
+                username.split(/(?=[A-Z])/).join("+")
+            )}
+            className="rounded border border-2 border-dark"
+            width="25"
+            height="25"
+            alt={username + "'s avatar"}
+          />
+          <h4 className="fs-5 mx-2">@{username}</h4>
+        </>
+      )}
     </div>
   );
 }
 User.propTypes = {
   username: PropTypes.string.isRequired,
+  mini: PropTypes.bool,
 };
 User.defaultProps = {
   username: "DarkLordStrategy",
+  mini: false,
 };
-
-function VideoCard({ title, description, thumbnail, creator, uri }) {
+function ClampedTitle({ text, lines, fontSize }) {
+  return (
+    <h1
+      className={`fs-${fontSize} fw-bolder text-wrap`}
+      style={{
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        display: "-webkit-box",
+        WebkitLineClamp: lines,
+        WebkitBoxOrient: "vertical",
+      }}
+    >
+      {text}
+    </h1>
+  );
+}
+ClampedTitle.propTypes = {
+  text: PropTypes.string.isRequired,
+  lines: PropTypes.number.isRequired,
+  fontSize: PropTypes.number,
+};
+function ClampedText({ text, lines, fontSize }) {
+  return (
+    <p
+      className={`fs-${fontSize} fw-bolder text-wrap`}
+      style={{
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        display: "-webkit-box",
+        WebkitLineClamp: lines,
+        WebkitBoxOrient: "vertical",
+      }}
+    >
+      {text}
+    </p>
+  );
+}
+ClampedText.propTypes = {
+  text: PropTypes.string.isRequired,
+  lines: PropTypes.number.isRequired,
+  fontSize: PropTypes.number,
+};
+function Thumbnail({ src, alt }) {
+  return (
+    <img
+      alt={alt}
+      src={src}
+      className="rounded-4 border border-2 border-dark w-100"
+      style={{
+        aspectRatio: "16/9",
+        borderRadius: "10px",
+      }}
+    />
+  );
+}
+Thumbnail.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+};
+export function VideoCard({ title, description, thumbnail, creator, uri }) {
   const navigate = useNavigate();
   return (
     <div
@@ -36,43 +102,15 @@ function VideoCard({ title, description, thumbnail, creator, uri }) {
         navigate("/v/" + uri);
       }}
     >
-      <Row noGutters>
+      <Row>
         <Col xs="auto" md={6}>
-          <img
-            alt={title}
-            src={thumbnail}
-            className="rounded-4 border border-2 border-dark w-100"
-            style={{
-              aspectRatio: "16/9",
-              borderRadius: "10px",
-            }}
-          />
+          <Thumbnail alt={title} src={thumbnail} />
         </Col>
         <Col className="d-flex flex-column justify-content-between">
           <div className="p-3">
-            <h3 className="fs-3">{title}</h3>
-            <User
-              username={creator}
-              style={{
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: 3,
-                WebkitBoxOrient: "vertical",
-              }}
-            />
-            <p
-              className="fs-5"
-              style={{
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: 4,
-                WebkitBoxOrient: "vertical",
-              }}
-            >
-              {description}
-            </p>
+            <ClampedTitle text={title} lines={2} fontSize={3} />
+            <User username={creator} />
+            <ClampedText text={description} lines={4} fontSize={5} />
           </div>
         </Col>
       </Row>
@@ -94,4 +132,3 @@ VideoCard.defaultProps = {
   creator: "DarkLordStrategy",
   uri: "video-uri",
 };
-export default VideoCard;
