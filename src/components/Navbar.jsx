@@ -32,7 +32,7 @@ function NavigationBar(props) {
               </NavLink>
             </NavItem>
           </Nav>
-          <Link to="/auth?page=signin" className="text-decoration-none">
+          <Link reloadDocument to="/auth?page=signin" className="text-decoration-none">
             <Button
               color="dark"
               size="lg"
@@ -42,7 +42,7 @@ function NavigationBar(props) {
               Sign In
             </Button>
           </Link>
-          <Link to="/auth?page=signup" className="text-decoration-none">
+          <Link reloadDocument to="/auth?page=signup" className="text-decoration-none">
             <Button
               color="primary"
               size="lg"
