@@ -3,12 +3,17 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Player from "./pages/Player.jsx";
 import Home from "./pages/Home.jsx";
+import Welcome from "./pages/Welcome.jsx";
 import Auth from "./pages/Auth.jsx";
 import ErrorPage from "./pages/Error.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/welcome",
+    element: <Welcome />,
   },
   {
     path: "/v/:videoId",
