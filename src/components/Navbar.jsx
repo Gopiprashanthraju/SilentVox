@@ -19,7 +19,7 @@ function NavigationBar(props) {
   return (
     <div>
       <Navbar style={{ minHeight: "1.5em", fontSize: "1.5em" }} {...props}>
-        <NavbarBrand href="/">FSD</NavbarBrand>
+        <NavbarBrand href="/welcome">FSD</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
