@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.5.0](https://github.com/GaviniSumanth/FSD/compare/v1.4.0...v1.5.0) (2023-11-03)
+
+
+### Features
+
+* add about component ([d16c76c](https://github.com/GaviniSumanth/FSD/commit/d16c76cb406fb65c7f9e2930ba1bfd3351a7e542))
+* add footer component ([b5b170f](https://github.com/GaviniSumanth/FSD/commit/b5b170f411d6a11d6184ebd932d1feeea278f58f))
+* add hero component ([2c2734a](https://github.com/GaviniSumanth/FSD/commit/2c2734a1fe04160569b2a4e1dbdc01600b7a69f9))
+* add mini video card ([2a19495](https://github.com/GaviniSumanth/FSD/commit/2a19495e3c622e58c30026964ec42f6efc9bdf71))
+* add route to welcome page ([de59380](https://github.com/GaviniSumanth/FSD/commit/de59380e769affe9de88f4d6156b4ed54a298187))
+* add welcome page ([83495f5](https://github.com/GaviniSumanth/FSD/commit/83495f5f1cd86eb36ef7e46b456ff92c12971321))
+* route to welcome page in navbar ([ec7e014](https://github.com/GaviniSumanth/FSD/commit/ec7e0146e9b77dd2ba5f2d518e97dae5288a630e))
+* update styling in auth page ([aaefd2e](https://github.com/GaviniSumanth/FSD/commit/aaefd2eaa202ef8aca788a6b7a922dbb705758ec))
+
+
+### Bug Fixes
+
+* auth page layout on small windows ([3bd7a25](https://github.com/GaviniSumanth/FSD/commit/3bd7a2516336297cf9cccea71183635ad5a7fb97))
+* auth page navigation: signin &lt;-&gt; signup ([92f7185](https://github.com/GaviniSumanth/FSD/commit/92f718584764bb59ffc030e3214c8e1b4d315dab))
+
 ## [1.4.0](https://github.com/GaviniSumanth/FSD/compare/v1.3.0...v1.4.0) (2023-10-22)
 
 
