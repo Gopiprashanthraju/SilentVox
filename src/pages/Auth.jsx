@@ -30,6 +30,7 @@ function Auth() {
     <>
       <NavigationBar color="light" light expand="md" />
       <div
+      className="row"
         style={{
           width: "100%",
           height: "100vh",
@@ -44,7 +45,7 @@ function Auth() {
         }}
       >
         <div
-          className="w-50 text-white"
+          className="col-10 col-md-4 text-white"
           style={{
             padding: "20px",
             borderRadius: "30px",
