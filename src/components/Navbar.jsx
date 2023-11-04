@@ -10,7 +10,7 @@ import {
   NavLink,
   Button,
 } from "reactstrap";
-
+import logo from "../assets/logo.jpeg";
 function NavigationBar(props) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -19,7 +19,9 @@ function NavigationBar(props) {
   return (
     <div>
       <Navbar style={{ minHeight: "1.5em", fontSize: "1.5em" }} {...props}>
-        <NavbarBrand href="/welcome">FSD</NavbarBrand>
+        <NavbarBrand href="/welcome">
+          <img src={logo} alt="logo" height={30} />
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
@@ -32,7 +34,11 @@ function NavigationBar(props) {
               </NavLink>
             </NavItem>
           </Nav>
-          <Link reloadDocument to="/auth?page=signin" className="text-decoration-none">
+          <Link
+            reloadDocument
+            to="/auth?page=signin"
+            className="text-decoration-none"
+          >
             <Button
               color="dark"
               size="lg"
@@ -42,7 +48,11 @@ function NavigationBar(props) {
               Sign In
             </Button>
           </Link>
-          <Link reloadDocument to="/auth?page=signup" className="text-decoration-none">
+          <Link
+            reloadDocument
+            to="/auth?page=signup"
+            className="text-decoration-none"
+          >
             <Button
               color="primary"
               size="lg"
