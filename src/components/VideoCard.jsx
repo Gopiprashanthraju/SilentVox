@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Col, Row } from "reactstrap";
+import ReactTimeAgo from "react-time-ago";
 
 function User({ username, mini }) {
   return (
@@ -75,6 +76,19 @@ ClampedText.propTypes = {
   lines: PropTypes.number.isRequired,
   fontSize: PropTypes.number,
 };
+function Meta({ views, timestamp }) {
+  return (
+    <div className="flex-row align-items-center py-1">
+      <h4 className="fs-5 d-inline">{views} views</h4>
+      <div className="mx-1 d-inline">&#9679;</div>
+      <ReactTimeAgo className="fs-5 d-inline" date={timestamp} locale="en-US" />
+    </div>
+  );
+}
+Meta.propTypes = {
+  views: PropTypes.number.isRequired,
+  timestamp: PropTypes.string.isRequired,
+};
 function Thumbnail({ src, alt }) {
   return (
     <img
@@ -92,7 +106,15 @@ Thumbnail.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
 };
-export function VideoCard({ title, description, thumbnail, creator, uri }) {
+export function VideoCard({
+  title,
+  description,
+  thumbnail,
+  creator,
+  uri,
+  views,
+  timestamp,
+}) {
   const navigate = useNavigate();
   return (
     <div
@@ -110,6 +132,7 @@ export function VideoCard({ title, description, thumbnail, creator, uri }) {
           <div className="p-3">
             <ClampedTitle text={title} lines={2} fontSize={3} />
             <User username={creator} />
+            <Meta views={views} timestamp={timestamp} />
             <ClampedText text={description} lines={4} fontSize={5} />
           </div>
         </Col>
@@ -123,6 +146,8 @@ VideoCard.propTypes = {
   thumbnail: PropTypes.string.isRequired,
   creator: PropTypes.string.isRequired,
   uri: PropTypes.string.isRequired,
+  views: PropTypes.number.isRequired,
+  timestamp: PropTypes.string.isRequired,
 };
 VideoCard.defaultProps = {
   title: "Dark Visions: The Elusive Video and the Galaxy's Shrouded Secrets",
@@ -131,6 +156,8 @@ VideoCard.defaultProps = {
   thumbnail: "https://specializeddental.com/assets/placeholder-image.png",
   creator: "DarkLordStrategy",
   uri: "video-uri",
+  views: 0,
+  timestamp: "2021-05-01T00:00:00Z",
 };
 
 export function VideoCardMini({ title, thumbnail, creator, uri }) {
