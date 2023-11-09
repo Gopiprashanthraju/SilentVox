@@ -175,9 +175,11 @@ export function VideoCardMini({ title, thumbnail, creator, uri }) {
           <Thumbnail alt={title} src={thumbnail} />
         </Col>
         <Col className="d-flex flex-column justify-content-between">
-          <div className="p-3">
+          <div className="pt-3">
             <User username={creator} mini />
-            <ClampedText text={title} lines={2} fontSize={4} />
+            <div style={{ height: "60px" }}>
+              <ClampedText text={title} lines={2} fontSize={4} />
+            </div>
           </div>
         </Col>
       </Row>
