@@ -1,70 +1,55 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  Button,
-} from "reactstrap";
-import logo from "../assets/logo.jpeg";
-function NavigationBar(props) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
-
+import { Navbar } from "reactstrap";
+import "../components/Nav.css";
+function NavigationBar() {
+  const heroContainerStyle = {
+    marginBottom: "50px", // Make sure to specify a valid CSS unit (e.g., "px")
+  };
   return (
-    <div>
-      <Navbar style={{ minHeight: "1.5em", fontSize: "1.5em" }} {...props}>
-        <NavbarBrand href="/welcome">
-          <img src={logo} alt="logo" height={30} />
-        </NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="me-auto" navbar>
-            <NavItem>
-              <NavLink href="/">Home</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/gavinisumanth/fsd">
-                GitHub
-              </NavLink>
-            </NavItem>
-          </Nav>
-          <Link
-            reloadDocument
-            to="/auth?page=signin"
-            className="text-decoration-none"
-          >
-            <Button
-              color="dark"
-              size="lg"
-              className={isOpen ? "fs-4 w-100" : "fs-4"}
-              outline
-            >
-              Sign In
-            </Button>
-          </Link>
-          <Link
-            reloadDocument
-            to="/auth?page=signup"
-            className="text-decoration-none"
-          >
-            <Button
-              color="primary"
-              size="lg"
-              className={isOpen ? "fs-4 w-100 my-2" : "fs-4 mx-4"}
-            >
-              Sign Up
-            </Button>
-          </Link>
-        </Collapse>
-      </Navbar>
-    </div>
+    <header
+      id="header"
+      className="fixed-top header-transparent"
+      style={heroContainerStyle}
+    >
+      <div className="container d-flex align-items-center justify-content-between position-relative">
+        <div className="logo">
+          <h1 className="text-light">
+            <a>
+              <span>SilentVox</span>
+            </a>
+          </h1>
+        </div>
+        <nav id="navbar" className="navbar">
+          <ul>
+            <li>
+              <a className="nav-link scrollto active" href="/">
+                Home
+              </a>
+            </li>
+            <li>
+              <a className="nav-link scrollto" href="/#about">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a className="nav-link scrollto" href="/Auth">
+                Login
+              </a>
+            </li>
+            <li>
+              <a className="nav-link scrollto" href="/Auth">
+                Sign-Up
+              </a>
+            </li>
+            <li>
+              <a className="nav-link scrollto" href="#contact">
+                Contact
+              </a>
+            </li>
+          </ul>
+          <i className="bi bi-list mobile-nav-toggle" />
+        </nav>
+      </div>
+    </header>
   );
 }
-
 export default NavigationBar;
