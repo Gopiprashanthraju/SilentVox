@@ -12,7 +12,15 @@ function AddComment(props) {
   let [comment, setComment] = useState("");
   return (
     <>
-      <Form className="d-flex flex-column align-items-center justify-content-center fs-3 p-4">
+      <Form
+        className="d-flex flex-column align-items-center justify-content-center fs-3 p-4"
+        style={{
+          clear: "both",
+          clear: "left",
+          clear: "right",
+          overflow: "hidden",
+        }}
+      >
         <FormGroup className="text-start w-100 h-100">
           <Label for="title">Add a new comment</Label>
           <Input

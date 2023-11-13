@@ -9,7 +9,8 @@ import Welcome from "./pages/Welcome.jsx";
 import Auth from "./pages/Auth.jsx";
 import ErrorPage from "./pages/Error.jsx";
 import Myprofile from "./components/Profile.jsx";
-
+import VideoContainer from "./components/Video.jsx";
+import Comments from "./components/Comments.jsx";
 TimeAgo.addDefaultLocale(en);
 export const store = createContext();
 
@@ -36,6 +37,19 @@ const App = () => {
     {
       path: "Profile",
       element: <Myprofile />,
+    },
+    {
+      path: "Video",
+      element: (
+        <div>
+          <VideoContainer />
+          <Comments />
+        </div>
+      ),
+    },
+    {
+      path: "Comments",
+      element: <Comments />,
     },
     {
       path: "*",

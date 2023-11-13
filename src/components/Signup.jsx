@@ -12,7 +12,6 @@ import {
   Input,
   Button,
 } from "reactstrap";
-import { store } from "../main";
 
 const Signup = () => {
   const [username, setUsername] = useState("");

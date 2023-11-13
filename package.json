@@ -23,6 +23,7 @@
     "react-social-login-buttons": "^3.9.1",
     "react-time-ago": "^7.2.1",
     "reactjs-social-login": "^2.6.3",
+    "reactjs-video-playlist-player": "^1.1.1",
     "reactstrap": "^9.2.0",
     "validator": "^13.11.0"
   },
