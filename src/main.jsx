@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en.json'
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en.json";
 import Player from "./pages/Player.jsx";
 import Home from "./pages/Home.jsx";
 import Welcome from "./pages/Welcome.jsx";
 import Auth from "./pages/Auth.jsx";
 import ErrorPage from "./pages/Error.jsx";
-TimeAgo.addDefaultLocale(en)
+TimeAgo.addDefaultLocale(en);
 const router = createBrowserRouter([
   {
     path: "/",
