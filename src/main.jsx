@@ -8,29 +8,64 @@ import Home from "./pages/Home.jsx";
 import Welcome from "./pages/Welcome.jsx";
 import Auth from "./pages/Auth.jsx";
 import ErrorPage from "./pages/Error.jsx";
+import Myprofile from "./components/Profile.jsx";
+import VideoContainer from "./components/Video.jsx";
+import Comments from "./components/Comments.jsx";
 TimeAgo.addDefaultLocale(en);
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/welcome",
-    element: <Welcome />,
-  },
-  {
-    path: "/v/:videoId",
-    element: <Player />,
-  },
-  {
-    path: "/auth",
-    element: <Auth />,
-  },
-  {
-    path: "*",
-    element: <ErrorPage />,
-  },
-]);
+export const store = createContext();
+
+const App = () => {
+  const [token, setToken] = useState(null);
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/welcome",
+      element: <Welcome />,
+    },
+    {
+      path: "/v/:videoId",
+      element: <Player />,
+    },
+    {
+      path: "/auth",
+      element: <Auth />,
+    },
+    {
+      path: "Profile",
+      element: <Myprofile />,
+    },
+    {
+      path: "Video",
+      element: (
+        <div>
+          <VideoContainer />
+          <Comments />
+        </div>
+      ),
+    },
+    {
+      path: "Comments",
+      element: <Comments />,
+    },
+    {
+      path: "*",
+      element: <ErrorPage />,
+    },
+  ]);
+
+  return (
+    <React.StrictMode>
+      <store.Provider value={[token, setToken]}>
+        <RouterProvider router={router} />
+      </store.Provider>
+    </React.StrictMode>
+  );
+};
+
 import "./main.css";
 
 // Theme switcher logic
