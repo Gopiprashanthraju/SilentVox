@@ -1,4 +1,5 @@
 import ReactPlayer from "react-player";
+import { useState } from "react";
 import PropTypes from "prop-types";
 const VideoPlayer = ({ title, video }) => {
   document.title = title;
@@ -24,4 +25,44 @@ VideoPlayer.propTypes = {
   title: PropTypes.string.isRequired,
   video: PropTypes.any.isRequired,
 };
-export default VideoPlayer;
+function ClampedText({ text, lines, fontSize }) {
+  return (
+    <p
+      className={`fs-${fontSize} text-wrap`}
+      style={{
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        display: "-webkit-box",
+        WebkitLineClamp: lines,
+        WebkitBoxOrient: "vertical",
+      }}
+    >
+      {text}
+    </p>
+  );
+}
+ClampedText.propTypes = {
+  text: PropTypes.string.isRequired,
+  lines: PropTypes.number.isRequired,
+  fontSize: PropTypes.number,
+};
+function Description({ description }) {
+  const [showMore, setShowMore] = useState(false);
+
+  return (
+    <div className="container-fluid rounded-4 overflow-hidden text-white bg-black p-3">
+      <ClampedText lines={showMore ? 100 : 3} fontSize={5} text={description} />
+      <button
+        className="btn btn-lg btn-link text-white fw-bolder fs-4 text-decoration-none w-100"
+        onClick={() => setShowMore(!showMore)}
+        style={{}}
+      >
+        {showMore ? "Show Less" : "Show More"}
+      </button>
+    </div>
+  );
+}
+Description.propTypes = {
+  description: PropTypes.string.isRequired,
+};
+export { VideoPlayer, Description };
