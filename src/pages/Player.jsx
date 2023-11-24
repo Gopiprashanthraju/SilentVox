@@ -1,8 +1,9 @@
 import Frame from "../components/Frame";
-import { VideoPlayer } from "../components/VideoPlayer";
+import { VideoPlayer, Description } from "../components/VideoPlayer";
 import Comments from "../components/Comments";
 import { VideoDeck } from "../components/VideoDeck";
-function Page() {
+import PropTypes from "prop-types";
+function Page({ description }) {
   return (
     <>
       <div className="d-flex p-4">
@@ -12,6 +13,7 @@ function Page() {
           }}
         >
           <VideoPlayer />
+          <Description description={description} />
           <Comments />
         </div>
         <VideoDeck title="Suggested" />
@@ -19,6 +21,28 @@ function Page() {
     </>
   );
 }
+Page.propTypes = {
+  description: PropTypes.string.isRequired,
+};
+Page.defaultProps = {
+  description: `
+  lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget ultricies ultrices, nisl nisl ultrici
+  es, quis aliquet odio diam a nisl. Donec sit amet eros at odio tincidunt luctus. Ut euismod, dolor sit amet aliquam
+  faucibus, ex elit ultricies augue, a porta nunc elit sit amet elit. Nulla facilisi. Sed euismod, nisl eget ultricies
+  ultrices, nisl nisl ultricies, quis aliquet odio diam a nisl. Donec sit amet eros at odio tincidunt luctus. Ut euismod,
+  dolor sit amet aliquam faucibus, ex elit ultricies augue, a porta nunc elit sit amet elit. Nulla facilisi. Sed euismod,
+  nisl eget ultricies ultrices, nisl nisl ultricies, quis aliquet odio diam a nisl. Donec sit amet eros at odio tincidunt
+  luctus. Ut euismod, dolor sit amet aliquam faucibus, ex elit ultricies augue, a porta nunc elit sit amet elit. Nulla
+  facilisi. Sed euismod, nisl eget ultricies ultrices, nisl nisl ultricies, quis aliquet odio diam a nisl. Donec sit amet
+  eros at odio tincidunt luctus. Ut euismod, dolor sit amet aliquam faucibus, ex elit ultricies augue, a porta nunc elit
+  sit amet elit. Nulla facilisi. Sed euismod, nisl eget ultricies ultrices, nisl nisl ultricies, quis aliquet odio diam a
+  nisl. Donec sit amet eros at odio tincidunt luctus. Ut euismod, dolor sit amet aliquam faucibus, ex elit ultricies
+  augue, a porta nunc elit sit amet elit. Nulla facilisi. Sed euismod, nisl eget ultricies ultrices, nisl nisl ultricies,
+  quis aliquet odio diam a nisl. Donec sit amet eros at odio tincidunt luctus. Ut euismod, dolor sit amet aliquam
+  faucibus, ex elit ultricies augue, a porta nunc elit sit amet elit. Nulla facilisi. Sed euismod, nisl eget ultricies
+  ultrices, nisl nisl ultricies, quis aliquet odio diam a nisl. Donec sit amet eros at odio tincidunt luctus. Ut euismod,
+  `,
+};
 function Home() {
   return (
     <>
