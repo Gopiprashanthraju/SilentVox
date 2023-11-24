@@ -52,7 +52,7 @@ function Description({ description }) {
   return (
     <div className="container-fluid rounded-4 overflow-hidden text-white bg-black p-3">
       <h2 className="text-white text-center ">Description</h2>
-      <ClampedText lines={showMore ? 100 : 3} fontSize={5} text={description} />
+      <ClampedText lines={showMore ? 100 : 3} fontSize={4} text={description} />
       <button
         className="btn btn-lg btn-link text-white fw-bolder fs-4 text-decoration-none w-100"
         onClick={() => setShowMore(!showMore)}
