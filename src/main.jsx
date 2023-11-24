@@ -8,6 +8,7 @@ import Home from "./pages/Home.jsx";
 import Welcome from "./pages/Welcome.jsx";
 import Auth from "./pages/Auth.jsx";
 import ErrorPage from "./pages/Error.jsx";
+import Upload from "./pages/Upload.jsx";
 TimeAgo.addDefaultLocale(en);
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/auth",
     element: <Auth />,
+  },
+  {
+    path: "/upload",
+    element: <Upload />,
   },
   {
     path: "*",
