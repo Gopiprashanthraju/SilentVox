@@ -81,7 +81,7 @@ function Meta({ views, timestamp }) {
     <div className="flex-row align-items-center py-1">
       <h4 className="fs-5 d-inline">{views} views</h4>
       <div className="mx-1 d-inline">&#9679;</div>
-      <ReactTimeAgo className="fs-5 d-inline" date={timestamp} locale="en-US" />
+      <ReactTimeAgo className="fs-5 d-inline" date={new Date(timestamp)} locale="en-US" />
     </div>
   );
 }
