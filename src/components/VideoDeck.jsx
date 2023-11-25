@@ -99,8 +99,12 @@ VideoList.propTypes = {
 VideoList.defaultProps = {
   videos: Array(4).fill({
     title: "Dark Visions: The Elusive Video and the Galaxy's Shrouded Secrets",
+    description:
+      "In the depths of the galaxy, a situation emerged where the very location of a crucial video remained shrouded in darkness. The video, a key to unraveling a complex plot, was believed to hold the answers I sought. However, as I scoured the vast expanse of the cosmos and consulted my extensive resources, I came to a grim realization.The video's location was invalid, obscured by layers of deception and misdirection. It seemed to defy even the most potent Sith abilities. No matter how deeply I delved into the Force, the trail led only to dead ends and false leads. The elusive recording was concealed within a labyrinthine network of misdirection and secrecy, a puzzle that eluded my relentless pursuit.In this predicament, I was confronted with the bitter truth that the video's hidden location might forever remain beyond my grasp, a testament to the cunning of those who had gone to great lengths to keep its secrets obscured.",
     thumbnail: "https://specializeddental.com/assets/placeholder-image.png",
     creator: "DarkLordStrategy",
     uri: "video-uri",
+    views: 0,
+    timestamp: "2021-05-01T00:00:00Z",
   }),
 };
