@@ -1,5 +1,45 @@
 # Changelog
 
+## [1.6.0](https://github.com/GaviniSumanth/FSD/compare/v1.5.0...v1.6.0) (2023-11-25)
+
+
+### Features
+
+* add api util ([16d880d](https://github.com/GaviniSumanth/FSD/commit/16d880dbd6e77982ad4ea45911a453bb75a352c5))
+* add frame component ([c10bf10](https://github.com/GaviniSumanth/FSD/commit/c10bf102d00d467215de514247186e4adfb7420e))
+* add profile component ([0a9a357](https://github.com/GaviniSumanth/FSD/commit/0a9a3579bc01932c9af8b7fb00af9d6670d17458))
+* add project logos ([c2cc968](https://github.com/GaviniSumanth/FSD/commit/c2cc968d33f20fe6c09c3d4ac08b167013b9aed0))
+* add recommended section to home page ([d65141d](https://github.com/GaviniSumanth/FSD/commit/d65141d1ce7a0ec0a5b456e9096b679868282683))
+* add search to frame component ([4d3ece5](https://github.com/GaviniSumanth/FSD/commit/4d3ece5fb9c8ad829c3d2fc814cbb909eca14848))
+* add storage util ([049dc8c](https://github.com/GaviniSumanth/FSD/commit/049dc8c2f92255bd615294d09b6334552df26d10))
+* add title to video description ([f50c516](https://github.com/GaviniSumanth/FSD/commit/f50c5166b73f845287827c6e25b1083ca2e216cb))
+* add upload page ([615d7f7](https://github.com/GaviniSumanth/FSD/commit/615d7f75ebca3d54202e187418fd9f97d9856064))
+* add upload page to upload route ([1867fe0](https://github.com/GaviniSumanth/FSD/commit/1867fe090e6bf3cf0a2e6c27a39a335f141a7e1a))
+* add video deck ([69373b6](https://github.com/GaviniSumanth/FSD/commit/69373b6af89fa1bc5b4a34a6708e19d137fd0ac3))
+* add video description component ([aa6e75f](https://github.com/GaviniSumanth/FSD/commit/aa6e75f14d3369f0e9b50f4c5240f6b9ba80d5f7))
+* add video list component ([6f2726a](https://github.com/GaviniSumanth/FSD/commit/6f2726a231348652a13f2f9dc8c4c84b742a89f0))
+* add video name to doc title ([d057aa7](https://github.com/GaviniSumanth/FSD/commit/d057aa74ac62335eae0f912c962526533b61958a))
+* add video player component ([e09276b](https://github.com/GaviniSumanth/FSD/commit/e09276b797f2128e9db315799d0879fdc74a3951))
+* add video player description to video page ([6497959](https://github.com/GaviniSumanth/FSD/commit/6497959b3bdf59f5cc15b53c08638472f030e45a))
+* add views and time ago to video cards ([6f2a77f](https://github.com/GaviniSumanth/FSD/commit/6f2a77fc7067ec09adb2565e89c5fb02c1a690dd))
+* add votes, watch later to video player ([7e97a24](https://github.com/GaviniSumanth/FSD/commit/7e97a24cde860a1db34f1c54a56a9e3b0fe1ecda))
+* change primary and secondary colors in dark theme ([a3407e9](https://github.com/GaviniSumanth/FSD/commit/a3407e9a06b53800e66e27da37805df5f38daea5))
+* implement video player page ([806ba63](https://github.com/GaviniSumanth/FSD/commit/806ba63e93319f755c5980369f582edf1aae2092))
+* remove upload form background ([020701f](https://github.com/GaviniSumanth/FSD/commit/020701fe9be0379d16a50da69b2a3b4f67300ebf))
+
+
+### Bug Fixes
+
+* default props of video list component ([3f8a8b7](https://github.com/GaviniSumanth/FSD/commit/3f8a8b785fc01932999eba466f7eda140dde48b0))
+* increased video description font size ([c4af5d1](https://github.com/GaviniSumanth/FSD/commit/c4af5d117cd9d72028363af0d546004d6a0b2be2))
+* mini video card's text height ([644a0f6](https://github.com/GaviniSumanth/FSD/commit/644a0f60edae8e9cc7927b396c932f6e7e66cc4f))
+* timestamp handling in video card ([ccb93df](https://github.com/GaviniSumanth/FSD/commit/ccb93df1e7f544ff0293485fc8eae19a03c212f8))
+* title for recommended section in home page ([b3a0b45](https://github.com/GaviniSumanth/FSD/commit/b3a0b455b314bb8892806f7011372ed5f6999dd1))
+* video card border color ([f5a3560](https://github.com/GaviniSumanth/FSD/commit/f5a3560b8f460d9fea8b51d4694903d5e3c54062))
+* video card text color ([a759fe7](https://github.com/GaviniSumanth/FSD/commit/a759fe7352bddb0976e6ead91e1439c0ea2ef9a0))
+* video card text color ([ded09dc](https://github.com/GaviniSumanth/FSD/commit/ded09dc30564c6be00ee7394f53b05ece31f4ef8))
+* video comments styling ([d24ed3e](https://github.com/GaviniSumanth/FSD/commit/d24ed3e3e9760050f71e2c5d5ef96d95fea309fa))
+
 ## [1.5.0](https://github.com/GaviniSumanth/FSD/compare/v1.4.0...v1.5.0) (2023-11-03)
 
 
