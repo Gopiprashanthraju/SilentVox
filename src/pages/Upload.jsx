@@ -24,10 +24,7 @@ function Page() {
     <>
       <Container
         className=" text-white fs-1 p-5 rounded-3 text-center"
-        style={{
-          backgroundColor: "rgba(0, 0, 0, 0.75)",
-          backdropFilter: "blur(10px)",
-        }}
+        
       >
         <h1>Upload</h1>
         <Form className="text-start fs-2" onSubmit={handleSubmit}>
