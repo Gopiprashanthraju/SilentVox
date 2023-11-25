@@ -118,7 +118,7 @@ export function VideoCard({
   const navigate = useNavigate();
   return (
     <div
-      className="my-2 border border-2 border-dark rounded-4 container-fluid p-3 "
+      className="my-2 border border-2 border-dark rounded-4 container-fluid p-3"
       style={{ maxWidth: "1000px" }}
       onClick={() => {
         navigate("/v/" + uri);
@@ -164,7 +164,7 @@ export function VideoCardMini({ title, thumbnail, creator, uri }) {
   const navigate = useNavigate();
   return (
     <div
-      className="my-2 border border-2 border-dark rounded-4 container-fluid p-3"
+      className="my-2 border border-2 border-white rounded-4 container-fluid p-3 text-white"
       style={{ maxWidth: "350px" }}
       onClick={() => {
         navigate("/v/" + uri);
