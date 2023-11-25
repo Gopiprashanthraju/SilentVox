@@ -12,7 +12,7 @@ function AddComment(props) {
   let [comment, setComment] = useState("");
   return (
     <>
-      <Form className="d-flex flex-column align-items-center justify-content-center fs-3 p-4">
+      <Form className="d-flex flex-column align-items-center justify-content-center fs-3 p-4 text-white">
         <FormGroup className="text-start w-100 h-100">
           <Label for="title">Add a new comment</Label>
           <Input
@@ -159,7 +159,7 @@ Vote.defaultProps = {
 function Comment({ title, username, comment, upVotes, downVotes }) {
   return (
     <>
-      <div className="d-flex flex-column justify-content-center p-3 text-bg-light rounded">
+      <div className="d-flex flex-column justify-content-center p-3 text-bg-light">
         <User username={username} />
         <h3 className="fs-4">{title}</h3>
         <p className="fs-5">{comment}</p>
@@ -187,7 +187,7 @@ function Comments({ comments }) {
   return (
     <>
       <AddComment />
-      <div className="d-flex flex-row align-items-center justify-content-between px-4 py-0 mx-0 my-0">
+      <div className="d-flex flex-row align-items-center justify-content-between px-4 py-0 mx-0 my-0 text-white">
         <p className="fs-3">{comments.length} Comments</p>
         <div className="d-flex flex-row align-items-center py-0">
           <p className="fs-4 mx-2">Sort by:</p>
@@ -207,6 +207,7 @@ function Comments({ comments }) {
         </div>
       </div>
       <hr className="mx-0 my-0 px-0 py-0" />
+      <div className=" rounded-2 overflow-hidden">
       {Array.from(comments)
         ?.sort((a, b) => {
           if (sortOrder === "upvotes") return b.upVotes - a.upVotes;
@@ -226,6 +227,7 @@ function Comments({ comments }) {
             downVotes={comment.downVotes}
           />
         ))}
+      </div>
     </>
   );
 }
