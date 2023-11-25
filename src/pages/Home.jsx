@@ -1,9 +1,16 @@
-import NavigationBar from "./../components/Navbar";
+import Frame from "../components/Frame";
+import {VideoDeck} from "../components/VideoDeck";
+function Page() {
+  return <>
+    <VideoDeck />
+  </>;
+}
 function Home() {
   return (
     <>
-      <NavigationBar color="light" light expand="md" />
-      <h1>Home</h1>
+      <Frame>
+        <Page />
+      </Frame>
     </>
   );
 }
