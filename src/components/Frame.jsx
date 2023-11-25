@@ -1,6 +1,6 @@
 import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { NavbarBrand, Nav, NavItem } from "reactstrap";
 import {
   HourglassSplit,
@@ -13,6 +13,16 @@ import {
 } from "react-bootstrap-icons";
 import logo from "../assets/logo.jpeg";
 import searchContext from "../context/searchContext";
+import { VideoList } from "../components/VideoDeck";
+function Search() {
+  const search = useContext(searchContext);
+  return (
+    <>
+      <h1 className="text-white text-center fs-2">You searched for {search}</h1>
+      <VideoList />
+    </>
+  );
+}
 function User({ username }) {
   return (
     <div className="d-flex flex-row justify-content-start align-items-center py-1">
@@ -140,7 +150,7 @@ function Frame({ children }) {
             </div>
           </div>
           <searchContext.Provider value={search}>
-            {children}
+            {search ? <Search /> : children}
           </searchContext.Provider>
         </div>
       </div>
