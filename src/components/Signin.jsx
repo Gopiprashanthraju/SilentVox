@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import validator from "validator";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+
 import {
   Form,
   FormFeedback,
@@ -96,7 +97,7 @@ const Signin = () => {
   };
 
   if (token) {
-    return <Navigate to="/Profile" />;
+    return <Navigate to="/frame" />;
   }
 
   return (
@@ -141,12 +142,13 @@ const Signin = () => {
       <br></br>
       <LoginSocialFacebook
         appId="1257312144964229"
-        onResolve={(Response) => {
+        onResolve={async (Response) => {
           alert(Response);
-          axios
+          await axios
             .post("http://localhost:5000/setfbtoken", Response)
             .then((res) => {
               setToken(res.data);
+              localStorage.setItem("token", token);
               <Navigate to="/Profile" />;
             });
         }}

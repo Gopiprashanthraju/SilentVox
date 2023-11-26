@@ -15,9 +15,6 @@ function AddComment(props) {
       <Form
         className="d-flex flex-column align-items-center justify-content-center fs-3 p-4"
         style={{
-          clear: "both",
-          clear: "left",
-          clear: "right",
           overflow: "hidden",
         }}
       >

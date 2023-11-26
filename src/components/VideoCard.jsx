@@ -81,7 +81,11 @@ function Meta({ views, timestamp }) {
     <div className="flex-row align-items-center py-1">
       <h4 className="fs-5 d-inline">{views} views</h4>
       <div className="mx-1 d-inline">&#9679;</div>
-      <ReactTimeAgo className="fs-5 d-inline" date={timestamp} locale="en-US" />
+      <ReactTimeAgo
+        className="fs-5 d-inline"
+        date={new Date(timestamp)}
+        locale="en-US"
+      />
     </div>
   );
 }
@@ -118,7 +122,7 @@ export function VideoCard({
   const navigate = useNavigate();
   return (
     <div
-      className="my-2 border border-2 border-dark rounded-4 container-fluid p-3 "
+      className="my-2 border border-2 border-white rounded-4 container-fluid p-3 text-white"
       style={{ maxWidth: "1000px" }}
       onClick={() => {
         navigate("/v/" + uri);
@@ -164,7 +168,7 @@ export function VideoCardMini({ title, thumbnail, creator, uri }) {
   const navigate = useNavigate();
   return (
     <div
-      className="my-2 border border-2 border-dark rounded-4 container-fluid p-3"
+      className="my-2 border border-2 border-white rounded-4 container-fluid p-3 text-white"
       style={{ maxWidth: "350px" }}
       onClick={() => {
         navigate("/v/" + uri);

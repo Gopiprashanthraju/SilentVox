@@ -1,7 +1,10 @@
 import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { NavbarBrand, Nav, NavItem } from "reactstrap";
+import { store } from "../main";
+import axios from "axios";
+import { Navigate } from "react-router-dom";
 import {
   HourglassSplit,
   ClockFill,
@@ -13,7 +16,38 @@ import {
 } from "react-bootstrap-icons";
 import logo from "../assets/logo.jpeg";
 import searchContext from "../context/searchContext";
+import { VideoList } from "../components/VideoDeck";
+function Search() {
+  const search = useContext(searchContext);
+  return (
+    <>
+      <h1 className="text-white text-center fs-2">You searched for {search}</h1>
+      <VideoList />
+    </>
+  );
+}
 function User({ username }) {
+  const [token, setToken] = useContext(store);
+  const [data, setData] = useState(null);
+  console.log(data);
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+    if (token) {
+      localStorage.setItem("token", token);
+      axios
+        .get("http://localhost:5000/Profile", {
+          headers: {
+            "x-token": token,
+          },
+        })
+        .then((res) => setData(res.data))
+        .catch((err) => console.log(err));
+    }
+  }, [token]);
+
+  // if (!token) {
+  //   return <Navigate to="/" />;
+  // }
   return (
     <div className="d-flex flex-row justify-content-start align-items-center py-1">
       <img
@@ -26,7 +60,7 @@ function User({ username }) {
         height="25"
         alt={username + "'s avatar"}
       />
-      <h4 className="fs-5 mx-2">{username}</h4>
+      <h4 className="fs-5 mx-2">{data && data.username}</h4>
     </div>
   );
 }
@@ -140,7 +174,7 @@ function Frame({ children }) {
             </div>
           </div>
           <searchContext.Provider value={search}>
-            {children}
+            {search ? <Search /> : children}
           </searchContext.Provider>
         </div>
       </div>

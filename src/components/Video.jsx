@@ -4,13 +4,31 @@ import {
   goToNextVideo,
   goToPreviousVideo,
 } from "reactjs-video-playlist-player";
+
 import "./Video.css";
+import axios from "axios";
+let video = null;
 function VideoContainer() {
+  axios
+    .get("http://localhost:5000/video/stream")
+    .then((res) => {
+      if (res.data) {
+        video = res.data;
+        console.log(video);
+      } else {
+        console.error("Invalid server response:", res);
+        // Handle unexpected server response or inform the user appropriately
+      }
+    })
+    .catch((error) => {
+      console.error("Error initiating Facebook authentication: ", error);
+      // Handle errors or inform the user appropriately
+    });
   const [videoList, setVideoList] = useState([
     {
       thumbnail:
         "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
-      url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      url: { video },
       imgAlt: "Image 1 not found",
     },
     {
