@@ -6,21 +6,23 @@ import React, { useContext, useState, useEffect } from "react";
 function Page() {
   const [token, setToken] = useContext(store);
   const [data1, setData] = useState(null);
-  useEffect(() => {
-    if (token) {
-      axios
-        .get("http://localhost:5000/Profile", {
-          headers: {
-            "x-token": token,
-          },
-        })
-        .then((res) => setData(res.data))
-        .catch((err) => console.log(err));
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   if (token) {
+  //     axios
+  //       .get("http://localhost:5000/Profile", {
+  //         headers: {
+  //           "x-token": token,
+  //         },
+  //       })
+  //       .then((res) => setData(res.data))
+  //       .catch((err) => console.log(err));
+  //   }
+  // }, [token]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData();
+    alert("Uploading");
 
     data.append("title", event.target.title.value);
     data.append("description", event.target.description.value);
@@ -30,16 +32,14 @@ function Page() {
     );
     data.append("videoSource", event.target.videoSource.value);
     data.append("thumbnail", event.target.thumbnail.files[0]);
-    console.log(data1);
-    console.log(data1.email);
-    data.append("data1", data1._id);
+    data.append("data1", data1.username);
 
     if (data.get("videoSource") === "local") {
       data.append("video", event.target.video.files[0]);
     } else {
       data.append("video", event.target.video.value);
     }
-
+    console.log(data);
     axios
       .post("http://localhost:5000/video/upload", data, {
         headers: {

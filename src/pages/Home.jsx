@@ -1,6 +1,6 @@
 import Frame from "../components/Frame";
 import { VideoDeck } from "../components/VideoDeck";
-import { useState, useEffect } from "react"; // Import useEffect
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 function Page() {
@@ -16,9 +16,7 @@ function Page() {
   console.log(data);
 
   return (
-    <>
-      <VideoDeck title="Recommended" {...data} />
-    </>
+    <>{data !== null && <VideoDeck title="Recommended" videos={data} />}</>
   );
 }
 

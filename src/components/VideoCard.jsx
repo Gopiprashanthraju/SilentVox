@@ -94,6 +94,8 @@ Meta.propTypes = {
   timestamp: PropTypes.string.isRequired,
 };
 function Thumbnail({ src, alt }) {
+  console.log(src);
+  console.log(alt);
   return (
     <img
       alt={alt}

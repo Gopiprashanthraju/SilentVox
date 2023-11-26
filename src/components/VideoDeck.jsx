@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 export function VideoDeck({ title, videos }) {
   console.log(title);
   console.log(videos);
+  console.log(videos[0]);
+  console.log(videos[0].thumbnail);
+  console.log(videos[0].thumbnail.data);
   return (
     <>
       <div className="p-3">
@@ -23,7 +26,9 @@ export function VideoDeck({ title, videos }) {
             <div key={video.videoid}>
               <VideoCardMini
                 title={video.title}
-                thumbnail={video.thumbnail.data}
+                thumbnail={
+                  "http://localhost:5000/thumbnail?videoid=" + video.videoid
+                }
                 creator="JOHN"
                 description={video.description}
                 uri={video.uri}
