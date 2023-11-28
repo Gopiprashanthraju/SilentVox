@@ -32,6 +32,9 @@ function Home() {
       <Frame>
         <Page />
       </Frame>
+      <Frame>
+        <Page />
+      </Frame>
     </>
   );
 }
