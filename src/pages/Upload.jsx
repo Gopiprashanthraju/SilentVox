@@ -6,18 +6,18 @@ import React, { useContext, useState, useEffect } from "react";
 function Page() {
   const [token, setToken] = useContext(store);
   const [data1, setData] = useState(null);
-  // useEffect(() => {
-  //   if (token) {
-  //     axios
-  //       .get("http://localhost:5000/Profile", {
-  //         headers: {
-  //           "x-token": token,
-  //         },
-  //       })
-  //       .then((res) => setData(res.data))
-  //       .catch((err) => console.log(err));
-  //   }
-  // }, [token]);
+  useEffect(() => {
+    if (token) {
+      axios
+        .get("http://localhost:5000/Profile", {
+          headers: {
+            "x-token": token,
+          },
+        })
+        .then((res) => setData(res.data))
+        .catch((err) => console.log(err));
+    }
+  }, [token]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -40,22 +40,24 @@ function Page() {
       data.append("video", event.target.video.value);
     }
     console.log(data);
-    axios
-      .post("http://localhost:5000/video/upload", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        alert(res.data.message);
-      })
-
-      .catch((error) => {
-        console.log(error);
-        alert("Error uploading video:", error);
-        <Navigate to="/Profile" />;
-      });
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/video/upload",
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data);
+      alert(response.data.message);
+      // Optionally, you can handle the response further
+    } catch (error) {
+      console.error("Error uploading video:", error);
+      alert("Error uploading video: " + error.message);
+      // Handle error cases, maybe redirect or show an error message to the user
+    }
   };
 
   const [videoType, setVideoType] = useState("local");
@@ -75,7 +77,7 @@ function Page() {
           encType="multipart/form-data"
         >
           <FormGroup>
-            <Label htmlFor="title">Title</Label>
+            <Label for="title">Title</Label>
             <Input type="text" name="title" className="fs-3" required />
           </FormGroup>
           <FormGroup>
@@ -97,7 +99,7 @@ function Page() {
             ></Input>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="thumbnail">Thumbnail</Label>
+            <Label for="thumbnail">Thumbnail</Label>
             <Input
               type="file"
               name="thumbnail"
@@ -107,7 +109,7 @@ function Page() {
             />
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="videoType">Video Source</Label>
+            <Label for="videoType">Video Source</Label>
             <Input
               type="select"
               bsSize="lg"
@@ -122,7 +124,7 @@ function Page() {
             </Input>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="video">Video</Label>
+            <Label for="video">Video</Label>
             {videoType === "youtube" ? (
               <Input
                 type="text"

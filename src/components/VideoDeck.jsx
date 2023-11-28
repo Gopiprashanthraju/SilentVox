@@ -1,12 +1,12 @@
 import { VideoCard, VideoCardMini } from "./VideoCard";
 import PropTypes from "prop-types";
-
+function convertUint8ArrayToDataURL(uint8Array) {
+  const blob = new Blob([uint8Array], { type: "image/jpeg" }); // Adjust the type based on the actual image format
+  return URL.createObjectURL(blob);
+}
 export function VideoDeck({ title, videos }) {
   console.log(title);
   console.log(videos);
-  console.log(videos[0]);
-  console.log(videos[0].thumbnail);
-  console.log(videos[0].thumbnail.data);
   return (
     <>
       <div className="p-3">
@@ -23,15 +23,15 @@ export function VideoDeck({ title, videos }) {
           }}
         >
           {videos.map((video) => (
-            <div key={video.videoid}>
+            <div key={video._id}>
               <VideoCardMini
-                title={video.title}
-                thumbnail={
-                  "http://localhost:5000/thumbnail?videoid=" + video.videoid
-                }
+                title={video.title || "NO title"}
+                thumbnail={convertUint8ArrayToDataURL(
+                  new Uint8Array(video.thumbnail.data)
+                )}
                 creator="JOHN"
-                description={video.description}
-                uri={video.uri}
+                // description={video.description || "No description"}
+                uri={video.videoid}
               />
             </div>
           ))}

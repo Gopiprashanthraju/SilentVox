@@ -97,7 +97,7 @@ const Signin = () => {
   };
 
   if (token) {
-    return <Navigate to="/frame" />;
+    return <Navigate to="/" />;
   }
 
   return (
@@ -149,7 +149,7 @@ const Signin = () => {
             .then((res) => {
               setToken(res.data);
               localStorage.setItem("token", token);
-              <Navigate to="/Profile" />;
+              <Navigate to="/" />;
             });
         }}
         onReject={(error) => {
@@ -167,7 +167,7 @@ const Signin = () => {
             .post("http://localhost:5000/setgoogletoken", Response)
             .then((res) => {
               setToken(res.data);
-              <Navigate to="/Profile" />;
+              <Navigate to="/" />;
             });
         }}
         onReject={(error) => {

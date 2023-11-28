@@ -7,12 +7,18 @@ function Page() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/video/allmeta")
-      .then((res) => setData(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/video/allmeta");
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
+    fetchData();
+  }, []); // The empty dependency array ensures that this effect runs once on mount
+  console.log("Videos Loading");
   console.log(data);
 
   return (

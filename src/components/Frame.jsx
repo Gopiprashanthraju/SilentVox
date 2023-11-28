@@ -7,9 +7,9 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 import {
   HourglassSplit,
+  CloudArrowUpFill,
   ClockFill,
   HouseFill,
-  BarChartFill,
   BellFill,
   GearFill,
   BoxArrowLeft,
@@ -30,9 +30,11 @@ function User({ username }) {
   const [token, setToken] = useContext(store);
   const [data, setData] = useState(null);
   console.log(data);
-  useEffect(() => {
+  if (!token) {
     setToken(localStorage.getItem("token"));
-    if (token) {
+  }
+  useEffect(() => {
+    if (token && data === null) {
       localStorage.setItem("token", token);
       axios
         .get("http://localhost:5000/Profile", {
@@ -44,17 +46,17 @@ function User({ username }) {
         .catch((err) => console.log(err));
     }
   }, [token]);
-
-  // if (!token) {
-  //   return <Navigate to="/" />;
-  // }
   return (
     <div className="d-flex flex-row justify-content-start align-items-center py-1">
       <img
-        src={encodeURI(
-          "https://ui-avatars.com/api/?background=random&&name=" +
-            username.split(/(?=[A-Z])/).join("+")
-        )}
+        src={
+          data
+            ? encodeURI(
+                "https://ui-avatars.com/api/?background=random&&name=" +
+                  encodeURIComponent(data.username.split(/(?=[A-Z])/).join("+"))
+              )
+            : "https://ui-avatars.com/api/?background=random&&name=Default"
+        }
         className="rounded border border-2 border-dark"
         width="25"
         height="25"
@@ -71,6 +73,10 @@ User.propTypes = {
 User.defaultProps = {
   username: "DarkLordStrategy",
 };
+function func() {
+  localStorage.removeItem("token");
+  window.location.href = "/welcome";
+}
 function Frame({ children }) {
   const [search, setSearch] = useState("");
   const sidebarWidth = "60px";
@@ -102,13 +108,13 @@ function Frame({ children }) {
             {/* TODO: add the links for navigation */}
             <div>
               <NavItem className="my-2">
-                <Link href="/">
+                <Link to="/">
                   <HouseFill className="w-100" />
                 </Link>
               </NavItem>
               <NavItem className="my-2">
-                <Link href="/">
-                  <BarChartFill className="w-100" />
+                <Link to="/upload">
+                  <CloudArrowUpFill className="w-100" />
                 </Link>
               </NavItem>
               <NavItem className="my-2">
@@ -134,7 +140,7 @@ function Frame({ children }) {
                 </Link>
               </NavItem>
               <NavItem className="my-2">
-                <Link href="/">
+                <Link onClick={func}>
                   <BoxArrowLeft className="w-100" />
                 </Link>
               </NavItem>

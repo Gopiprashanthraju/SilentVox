@@ -7,7 +7,7 @@ function User({ username, mini }) {
   return (
     <div className="d-flex flex-row justify-content-start align-items-center py-1">
       {mini ? (
-        <h4 className="fs-5">@{username}</h4>
+        <h4 className="fs-6">@{username}</h4>
       ) : (
         <>
           <img
@@ -126,9 +126,7 @@ export function VideoCard({
     <div
       className="my-2 border border-2 border-white rounded-4 container-fluid p-3 text-white"
       style={{ maxWidth: "1000px" }}
-      onClick={() => {
-        navigate("/v/" + uri);
-      }}
+      onClick={() => {}}
     >
       <Row>
         <Col xs="auto" md={6}>
@@ -167,13 +165,19 @@ VideoCard.defaultProps = {
 };
 
 export function VideoCardMini({ title, thumbnail, creator, uri }) {
+  console.log(uri);
   const navigate = useNavigate();
+  console.log("MIni");
+  console.log(title);
+  console.log(creator);
+
   return (
     <div
-      className="my-2 border border-2 border-white rounded-4 container-fluid p-3 text-white"
-      style={{ maxWidth: "350px" }}
+      className="my-2 border border-2 border-white bg-dark rounded-4 container-fluid p-3 text-white"
+      style={{ maxWidth: "350px", cursor: "pointer" }}
       onClick={() => {
-        navigate("/v/" + uri);
+        alert("working");
+        window.location.href = `/v/${uri}`;
       }}
     >
       <Row className="d-flex flex-column justify-content-between">
@@ -182,9 +186,24 @@ export function VideoCardMini({ title, thumbnail, creator, uri }) {
         </Col>
         <Col className="d-flex flex-column justify-content-between">
           <div className="pt-3">
-            <User username={creator} mini />
-            <div style={{ height: "60px" }}>
-              <ClampedText text={title} lines={2} fontSize={4} />
+            <User username={creator || "No name"} mini />
+            {/* <div style={{ height: "60px" }}>
+              <ClampedText
+                text={title || "No Title"}
+                lines={2}
+                fontSize={4}
+              />
+            </div> */}
+            <div
+              className="fs-5"
+              style={{
+                height: "60px",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap", // Add this line
+              }}
+            >
+              {title || "No Title"}
             </div>
           </div>
         </Col>

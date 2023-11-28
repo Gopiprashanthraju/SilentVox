@@ -41,7 +41,10 @@ function NavigationBar() {
               </a>
             </li>
             <li>
-              <a className="nav-link scrollto" href="#contact">
+              <a
+                className="nav-link scrollto"
+                href="mailto:SilentVox@gmail.com"
+              >
                 Contact
               </a>
             </li>
