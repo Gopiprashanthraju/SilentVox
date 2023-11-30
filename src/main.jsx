@@ -1,7 +1,6 @@
 import React, { useState, createContext } from "react";
 import ReactDOM from "react-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import axios from "axios";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import { Player } from "./pages/Player";
@@ -14,6 +13,8 @@ import Comments from "./components/Comments.jsx";
 import Frame from "./components/Frame.jsx";
 import { VideoDeck } from "./components/VideoDeck.jsx";
 import Upload from "./pages/Upload.jsx"; // Add this line
+import History from "./pages/History";
+import WatchLater from "./pages/WatchLater";
 TimeAgo.addDefaultLocale(en);
 
 export const store = createContext();
@@ -33,6 +34,14 @@ const App = () => {
     {
       path: "/upload",
       element: <Upload />,
+    },
+    {
+      path: "/history",
+      element: <History />,
+    },
+    {
+      path: "/watchlater",
+      element: <WatchLater />,
     },
     {
       path: "/welcome",

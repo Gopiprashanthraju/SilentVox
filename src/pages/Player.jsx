@@ -5,6 +5,7 @@ import { VideoDeck } from "../components/VideoDeck";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 function Page({ description }) {
   const [data, setData] = useState(null);
   useEffect(() => {
@@ -37,7 +38,7 @@ function Page({ description }) {
     </>
   );
 }
-export function Player({ description }) {
+export function Player(description) {
   return (
     <Frame>
       <Page description={description} />

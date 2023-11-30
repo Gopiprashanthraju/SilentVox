@@ -19,13 +19,39 @@ import searchContext from "../context/searchContext";
 import { VideoList } from "../components/VideoDeck";
 function Search() {
   const search = useContext(searchContext);
+  const [video, setVideo] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/search", {
+          params: {
+            text: search,
+          },
+        });
+        console.log(response);
+        setVideo(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
-      <h1 className="text-white text-center fs-2">You searched for {search}</h1>
-      <VideoList />
+      {video !== null && (
+        <>
+          <h1 className="text-white text-center fs-2">
+            You searched for {search}
+          </h1>
+          <VideoList videos={video} />
+        </>
+      )}
     </>
   );
 }
+
 function User({ username }) {
   const [token, setToken] = useContext(store);
   const [data, setData] = useState(null);
@@ -118,12 +144,12 @@ function Frame({ children }) {
                 </Link>
               </NavItem>
               <NavItem className="my-2">
-                <Link href="/">
+                <Link to="/watchlater">
                   <HourglassSplit className="w-100" />
                 </Link>
               </NavItem>
               <NavItem className="my-2">
-                <Link href="/">
+                <Link to="/history">
                   <ClockFill className="w-100" />
                 </Link>
               </NavItem>

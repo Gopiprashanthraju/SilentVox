@@ -40,11 +40,16 @@ const Signup = () => {
     }
   };
 
-  const validateUsername = (value) => {
+  const validateUsername = async (value) => {
+    const response = await axios.get("http://localhost:5000/checkuser", {
+      params: {
+        username: value,
+      },
+    });
     setValidate((prevState) => ({
       ...prevState,
       usernameState:
-        validator.isAlphanumeric(value) && !validator.isEmpty(value)
+        validator.isAlphanumeric(value) && !validator.isEmpty(value) && response
           ? "success"
           : "danger",
     }));
@@ -60,7 +65,7 @@ const Signup = () => {
     }));
   };
 
-  const validatePassword = (value) => {
+  const validatePassword = async (value) => {
     setValidate((prevState) => ({
       ...prevState,
       passwordState:
@@ -77,9 +82,17 @@ const Signup = () => {
     console.log(`Password: ${password}`);
     const data = { username, email, password };
 
-    axios.post("http://localhost:5000/register", data).then((res) => {
-      alert(res.data);
-    });
+    axios.post("http://localhost:5000/register", data).then((res) => {});
+  };
+  const random = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/getGeneratedName"
+      );
+      setUsername(response.data.username);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -106,7 +119,7 @@ const Signup = () => {
         </FormFeedback>
         <FormFeedback valid>That's a valid username. Go ahead.</FormFeedback>
       </FormGroup>
-      <Button color="primary fs-4" block>
+      <Button color="primary fs-4" block onClick={random}>
         <Dice6Fill className="bs-primary d-inline-block align-middle" />
         <p
           className="d-inline-block align-middle"

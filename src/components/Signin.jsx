@@ -41,7 +41,7 @@ const Signin = () => {
     }
   };
 
-  const validateUsername = (value) => {
+  const validateUsername = async (value) => {
     if (validator.isAlphanumeric(value) && !validator.isEmpty(value)) {
       setValidate((prevValidate) => ({
         ...prevValidate,
@@ -143,7 +143,6 @@ const Signin = () => {
       <LoginSocialFacebook
         appId="1257312144964229"
         onResolve={async (Response) => {
-          alert(Response);
           await axios
             .post("http://localhost:5000/setfbtoken", Response)
             .then((res) => {
@@ -152,17 +151,14 @@ const Signin = () => {
               <Navigate to="/" />;
             });
         }}
-        onReject={(error) => {
-          alert(error);
-        }}
+        onReject={(error) => {}}
       >
         <FacebookLoginButton />
       </LoginSocialFacebook>
       <br></br>
       <LoginSocialGoogle
-        client_id="875620691747-a5tbpd6m5kk5vbppik5ig0roq7fn19l3.apps.googleusercontent.com"
+        client_id="78948829328-hv7isv045lbks942g1ip6e7f6bjgj068.apps.googleusercontent.com"
         onResolve={(Response) => {
-          alert(Response);
           axios
             .post("http://localhost:5000/setgoogletoken", Response)
             .then((res) => {
@@ -170,9 +166,7 @@ const Signin = () => {
               <Navigate to="/" />;
             });
         }}
-        onReject={(error) => {
-          alert(error);
-        }}
+        onReject={(error) => {}}
       >
         <GoogleLoginButton />
       </LoginSocialGoogle>

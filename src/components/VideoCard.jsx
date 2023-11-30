@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Col, Row } from "reactstrap";
 import ReactTimeAgo from "react-time-ago";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 function User({ username, mini }) {
   return (
@@ -165,6 +167,20 @@ VideoCard.defaultProps = {
 };
 
 export function VideoCardMini({ title, thumbnail, creator, uri }) {
+  const token = localStorage.getItem("token");
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    if (data === null) {
+      axios
+        .get("http://localhost:5000/Profile", {
+          headers: {
+            "x-token": token,
+          },
+        })
+        .then((res) => setData(res.data))
+        .catch((err) => console.log(err));
+    }
+  }, [token]);
   console.log(uri);
   const navigate = useNavigate();
   console.log("MIni");
@@ -176,7 +192,10 @@ export function VideoCardMini({ title, thumbnail, creator, uri }) {
       className="my-2 border border-2 border-white bg-dark rounded-4 container-fluid p-3 text-white"
       style={{ maxWidth: "350px", cursor: "pointer" }}
       onClick={() => {
-        alert("working");
+        axios.post("http://localhost:5000/history", {
+          videoid: uri,
+          userid: data._id,
+        });
         window.location.href = `/v/${uri}`;
       }}
     >

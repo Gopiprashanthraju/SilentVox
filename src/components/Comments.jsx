@@ -1,13 +1,16 @@
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { PropTypes } from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import {
   ArrowUpSquare,
   ArrowUpSquareFill,
   ArrowDownSquare,
   ArrowDownSquareFill,
 } from "react-bootstrap-icons";
-function AddComment(props) {
+function AddComment(props, videoid, userid) {
+  console.log("videolist");
   let [title, setTitle] = useState("");
   let [comment, setComment] = useState("");
   return (
@@ -186,57 +189,88 @@ Comment.defaultProps = {
   comment:
     " In a galaxy far, far away, there's no need for default props, the Force guides the way and the droids are always ready for their missions! But here on Earth, we need to be prepared for any scenario. That's why we have fallbacks.",
 };
-function Comments({ comments }) {
-  // TODO: get comments from api and implement add comments functionality
+function Comments() {
+  const [comments, setComments] = useState(null);
+  const { videoId } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/comment", {
+          params: {
+            videoid: videoId,
+          },
+        });
+
+        setComments(response.data.comments);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  if (comments === "No Comments") {
+    setComments(null);
+  }
+  console.log("checkings");
+  console.log(comments);
+  console.log("HI");
   let [sortOrder, setSortOrder] = useState("newest");
+
   return (
     <>
       <AddComment />
-      <div className="d-flex flex-row align-items-center justify-content-between px-4 py-0 mx-0 my-0 text-white">
-        <p className="fs-3">{comments.length} Comments</p>
-        <div className="d-flex flex-row align-items-center py-0">
-          <p className="fs-4 mx-2">Sort by:</p>
-          <Input
-            className="form-select form-select-lg mb-3 w-auto "
-            aria-label="sort-order"
-            type="select"
-            onChange={(e) => {
-              setSortOrder(e.target.value);
-            }}
-          >
-            <option value="newest">Newest</option>
-            <option value="oldest">Oldest</option>
-            <option value="upvotes">Upvotes</option>
-            <option value="downvotes">Downvotes</option>
-          </Input>
-        </div>
-      </div>
-      <hr className="mx-0 my-0 px-0 py-0" />
-      <div className=" rounded-2 overflow-hidden">
-        {Array.from(comments)
-          ?.sort((a, b) => {
-            if (sortOrder === "upvotes") return b.upVotes - a.upVotes;
-            else if (sortOrder === "downvotes")
-              return b.downVotes - a.downVotes;
-            else if (sortOrder === "oldest")
-              return new Date(a.timestamp) - new Date(b.timestamp);
-            else if (sortOrder === "newest")
-              return new Date(b.timestamp) - new Date(a.timestamp);
-          })
-          .map((comment) => (
-            <Comment
-              key={comment.id}
-              title={comment.title}
-              username={comment.username}
-              comment={comment.comment}
-              upVotes={comment.upVotes}
-              downVotes={comment.downVotes}
-            />
-          ))}
-      </div>
+      {comments !== null && (
+        <>
+          <div className="d-flex flex-row align-items-center justify-content-between px-4 py-0 mx-0 my-0 text-white">
+            <p className="fs-3">{comments.length} Comments</p>
+            <div className="d-flex flex-row align-items-center py-0">
+              <p className="fs-4 mx-2">Sort by:</p>
+              <Input
+                className="form-select form-select-lg mb-3 w-auto "
+                aria-label="sort-order"
+                type="select"
+                onChange={(e) => {
+                  setSortOrder(e.target.value);
+                }}
+              >
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="upvotes">Upvotes</option>
+                <option value="downvotes">Downvotes</option>
+              </Input>
+            </div>
+          </div>
+          <hr className="mx-0 my-0 px-0 py-0" />
+          <div className="rounded-2 overflow-hidden">
+            {Array.from(comments)
+              ?.sort((a, b) => {
+                if (sortOrder === "upvotes") return b.upVotes - a.upVotes;
+                else if (sortOrder === "downvotes")
+                  return b.downVotes - a.downVotes;
+                else if (sortOrder === "oldest")
+                  return new Date(a.timestamp) - new Date(b.timestamp);
+                else if (sortOrder === "newest")
+                  return new Date(b.timestamp) - new Date(a.timestamp);
+              })
+              .map((comment) => (
+                <Comment
+                  key={comment._id}
+                  title={comment.title}
+                  username={comment.username}
+                  comment={comment.comment}
+                  upVotes={comment.upVotes}
+                  downVotes={comment.downVotes}
+                />
+              ))}
+          </div>
+        </>
+      )}
     </>
   );
 }
+
 Comments.propTypes = {
   comments: PropTypes.arrayOf(
     PropTypes.shape({
@@ -251,73 +285,7 @@ Comments.propTypes = {
   ),
 };
 Comments.defaultProps = {
-  comments: [
-    {
-      id: 0,
-      title: "Darth Vader's Inquiry",
-      username: "DarkLordStrategy",
-      comment: "Why do these comments continue to elude us?",
-      upVotes: 1000,
-      downVotes: 0,
-      timestamp: "2021-10-01T00:00:00.000Z",
-    },
-    {
-      id: -1,
-      title: "Trooper 1 Responds",
-      username: "Stormtrooper1",
-      comment:
-        "My lord, we've encountered unexpected errors in the comment retrieval process.",
-      upVotes: 100,
-      downVotes: 0,
-      timestamp: "2021-10-02T00:00:00.000Z",
-    },
-    {
-      id: -2,
-      title: "Darth Vader's Impatience",
-      username: "DarkLordStrategy",
-      comment:
-        "I sense a lack of progress. The comments must be located immediately.",
-      upVotes: 1000,
-      downVotes: 0,
-      timestamp: "2021-10-03T00:00:00.000Z",
-    },
-    {
-      id: -3,
-      title: "Trooper 2 Updates",
-      username: "Stormtrooper2",
-      comment:
-        "We're working diligently, Lord Vader, but the system's defenses are formidable.",
-      upVotes: 100,
-      downVotes: 0,
-      timestamp: "2021-10-04T00:00:00.000Z",
-    },
-    {
-      id: -4,
-      title: "Darth Vader's Command",
-      username: "DarkLordStrategy",
-      comment: "I will take matters into my own hands. Stand aside, troopers.",
-      upVotes: 1000,
-      downVotes: 0,
-      timestamp: "2021-10-05T00:00:00.000Z",
-    },
-    {
-      id: -5,
-      title: "Trooper 1's Concern",
-      username: "Stormtrooper1",
-      comment: "My lord, it may be too dangerous for you to-",
-      upVotes: 100,
-      downVotes: 0,
-      timestamp: "2021-10-06T00:00:00.000Z",
-    },
-    {
-      id: -6,
-      title: "Darth Vader's Determination",
-      username: "DarkLordStrategy",
-      comment: "I will find the comments, no matter the cost.",
-      upVotes: 1000,
-      downVotes: 0,
-      timestamp: "2021-10-07T00:00:00.000Z",
-    },
-  ],
+  comments: null,
 };
+
 export default Comments;

@@ -1,12 +1,28 @@
+import { useEffect, useState } from "react";
 import { VideoCard, VideoCardMini } from "./VideoCard";
 import PropTypes from "prop-types";
+import axios from "axios";
 function convertUint8ArrayToDataURL(uint8Array) {
   const blob = new Blob([uint8Array], { type: "image/jpeg" }); // Adjust the type based on the actual image format
   return URL.createObjectURL(blob);
 }
 export function VideoDeck({ title, videos }) {
+  const token = localStorage.getItem("token");
+  const [data, setData] = useState(null);
   console.log(title);
   console.log(videos);
+  useEffect(() => {
+    if (data === null) {
+      axios
+        .get("http://localhost:5000/Profile", {
+          headers: {
+            "x-token": token,
+          },
+        })
+        .then((res) => setData(res.data))
+        .catch((err) => console.log(err));
+    }
+  }, [token]);
   return (
     <>
       <div className="p-3">
@@ -29,8 +45,8 @@ export function VideoDeck({ title, videos }) {
                 thumbnail={convertUint8ArrayToDataURL(
                   new Uint8Array(video.thumbnail.data)
                 )}
-                creator="JOHN"
-                // description={video.description || "No description"}
+                creator={data && data.username}
+                description={video.description || "No description"}
                 uri={video.videoid}
               />
             </div>
@@ -75,19 +91,26 @@ export function VideoList({ videos }) {
           alignContent: "center",
         }}
       >
-        {videos.map((video) => (
-          <div key={video.uri}>
-            <VideoCard
-              title={video.title}
-              description={video.description}
-              thumbnail={video.thumbnail}
-              creator={video.creator}
-              uri={video.uri}
-              views={video.views}
-              timestamp={video.timestamp}
-            />
-          </div>
-        ))}
+        {videos.map(
+          (video) => (
+            console.log(video.thumbnail.data),
+            (
+              <div key={video.thumbnail.data}>
+                <VideoCard
+                  title={video.title}
+                  description={video.description}
+                  thumbnail={convertUint8ArrayToDataURL(
+                    new Uint8Array(video.thumbnail.data)
+                  )}
+                  creator={video.creator}
+                  uri={video.uri}
+                  views={video.views}
+                  timestamp={video.timestamp}
+                />
+              </div>
+            )
+          )
+        )}
       </div>
     </>
   );
@@ -117,7 +140,7 @@ VideoList.defaultProps = {
     timestamp: "2021-05-01T00:00:00Z",
   }),
 };
-export function VideoList({ videos }) {
+export function VideoList1({ videos }) {
   return (
     <>
       <div
@@ -136,7 +159,9 @@ export function VideoList({ videos }) {
             <VideoCard
               title={video.title}
               description={video.description}
-              thumbnail={video.thumbnail}
+              thumbnail={convertUint8ArrayToDataURL(
+                new Uint8Array(video.thumbnail)
+              )}
               creator={video.creator}
               uri={video.uri}
               views={video.views}
