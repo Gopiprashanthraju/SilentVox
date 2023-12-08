@@ -1,0 +1,80 @@
+Frontend
+├── public
+│   ├── logo.jpeg
+│   └── vite.svg
+├── src
+│   ├── assets
+│   │   ├── ErrorPageBg.svg
+│   │   └── logo.jpeg
+│   ├── components
+│   │   ├── About.jsx
+│   │   ├── Comments.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Frame.jsx
+│   │   ├── Hero.jsx
+│   │   ├── Nav.css
+│   │   ├── Navbar.jsx
+│   │   ├── Profile.jsx
+│   │   ├── Signin.jsx
+│   │   ├── Signup.jsx
+│   │   ├── Video.css
+│   │   ├── Video.jsx
+│   │   ├── VideoCard.jsx
+│   │   ├── VideoDeck.jsx
+│   │   └── VideoPlayer.jsx
+│   ├── context
+│   │   └── searchContext.jsx
+│   ├── pages
+│   │   ├── Auth.jsx
+│   │   ├── Error.jsx
+│   │   ├── History.jsx
+│   │   ├── Home.jsx
+│   │   ├── Player.jsx
+│   │   ├── Upload.jsx
+│   │   ├── WatchLater.jsx
+│   │   └── Welcome.jsx
+│   ├── utils
+│   │   ├── api.js
+│   │   └── storage.js
+│   ├── dark.scss
+│   ├── light.scss
+│   ├── main.css
+│   └── main.jsx
+├── CHANGELOG.md
+├── README.md
+├── commitlint.config.cjs
+├── directory_structure.txt
+├── index.html
+├── package-lock.json
+├── package.json
+└── vite.config.js
+
+Backend
+├── src
+│   ├── models
+│   │   ├── CommentModel.js
+│   │   ├── HistoryModel.js
+│   │   ├── UserModel.js
+│   │   ├── VideoMetaModel.js
+│   │   ├── VideoModel.js
+│   │   └── WatchlaterModel.js
+│   ├── routes
+│   │   ├── Facebook.js
+│   │   ├── Login.js
+│   │   ├── Profile.js
+│   │   ├── Register.js
+│   │   ├── comment.js
+│   │   ├── extra.js
+│   │   ├── middleware.js
+│   │   ├── studio.js
+│   │   ├── user.js
+│   │   └── video.js
+│   ├── app.js
+│   ├── db.js
+│   └── server.js
+├── tests
+│   └── user.test.js
+├── commitlint.config.cjs
+├── jest.config.ts
+├── package-lock.json
+└── package.json
